@@ -187,3 +187,141 @@ from employees
 where hire_date <= '03/12/31';
 
 select * from employees;
+
+select count(commission_pct) from employees;
+
+select department_id, round(avg(salary),2)
+from employees
+group by department_id
+order by 1;
+
+select department_id, count(*), sum(salary)
+from employees
+group by department_id
+having sum(salary) >= 20000;
+
+
+-- hr 계정 실습문제 2
+
+-- 1
+select max(salary) as "최고임금", min(salary) as "최저임금", max(salary)-min(salary) as "최고임금 - 최저임금"
+from employees;
+
+-- 2
+select to_char(max(hire_date),'yyyy"년" mm"월" dd"일"')
+from employees;
+
+-- 3
+select department_id, round(avg(salary),2), max(salary), min(salary)
+from employees
+group by department_id
+order by 1 desc;
+
+-- 4 
+select job_id, round(nvl(avg(salary),0),2), max(salary), min(salary)
+from employees
+group by job_id
+order by 1 desc;
+
+-- 5
+select to_char(min(hire_date), 'yyyy"년" mm"월" dd"월"')
+from employees;
+
+-- 6
+select department_id, round(nvl(avg(salary),0),2), min(salary), round(avg(salary)-min(salary),2)
+from employees
+group by department_id
+having round(avg(salary)-min(salary),2) < 2000
+order by 4 desc;
+
+-- 7
+select job_id, max(salary) - min(salary)
+from employees
+group by job_id
+order by 2 desc;
+
+
+select first_name, department_id, 
+    case when department_id between 10 and 50 then 'A-TEAM'
+         when department_id between 60 and 100 then 'B-TEAM'
+         when department_id between 110 and 150 then 'C-TEAM'
+         else '팀없음'
+    end team
+from employees;
+                        
+                        
+
+select e.first_name, d.department_name, j.job_title
+from employees e, departments d, jobs j
+where e.department_id = d.department_id(+)
+and e.job_id = j.job_id; 
+
+select e1.employee_id, e1.first_name, e2.first_name
+from employees e1, employees e2
+where e1.manager_id = e2.employee_id(+)
+order by 1; 
+
+select e.first_name, e.department_id, d.department_name
+from employees e, departments d
+where e.department_id(+) = d.department_id;
+
+select e.first_name, e.department_id, d.department_name
+from employees e right outer join departments d
+on e.department_id = d.department_id;
+
+
+
+
+-- hr 계정 실습문제 3
+
+-- 1
+select e.employee_id, e.first_name, d.department_name, e2.first_name
+from employees e, departments d, employees e2
+where e.department_id = d.department_id
+and e.manager_id = e2.employee_id
+order by 1;
+
+-- 2
+select r.region_name, c.country_name
+from regions r, countries c
+where r.region_id = c.region_id
+order by 1 desc, 2 desc;
+
+-- 3
+select d.department_id, d.department_name, e.first_name, 
+       d.manager_id, l.city, c.country_name, r.region_name
+from departments d, employees e, locations l, countries c, regions r
+where d.manager_id = e.employee_id
+and d.location_id = l.location_id
+and l.country_id = c.country_id
+and c.region_id = r.region_id
+order by 1;
+
+-- 4
+select h.employee_id, h.job_id, e.first_name || ' ' || e.last_name
+from job_history h, employees e
+where h.employee_id = e.employee_id
+and h.job_id = 'AC_ACCOUNT';
+
+-- 5
+select e.employee_id, e.first_name, e.last_name, d.department_name
+from employees e, departments d
+where e.department_id = d.department_id(+)
+order by 3;
+
+-- 6
+select e.employee_id, e.last_name, e.hire_date, m.hire_date as "매니저 입사일"
+from employees e, employees m
+where m.employee_id = e.manager_id
+and m.hire_date > e.hire_date;
+
+-- 안녕하세요 놀러왔습니다.
+-- 프로젝트 열심히 하시네요 굳굳 화이팅!!(별)
+-- 화이팅
+
+
+
+
+
+
+
