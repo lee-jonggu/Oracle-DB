@@ -186,3 +186,15 @@ where book_id = 5;
 rollback;
 
 select count(*) from seoul;
+
+-- PL/SQL
+
+set serveroutput on;
+
+declare
+vno varchar2(20);
+begin
+    select to_char(sysdate,'yyyy/mm/dd') into vno
+    from dual;
+    dbms_output.put_line(vno);
+end;
