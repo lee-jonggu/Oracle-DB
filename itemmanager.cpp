@@ -48,7 +48,7 @@ void ItemManager::loadData()
 
     qm = new QSqlTableModel(this,db);
     qm->setTable("item");
-    qm->select();
+    qm->select(); // select * from item;
     qm->setHeaderData(0, Qt::Horizontal, QObject::tr("Item_ID"));
     qm->setHeaderData(1, Qt::Horizontal, QObject::tr("Item_Name"));
     qm->setHeaderData(2, Qt::Horizontal, QObject::tr("Item_Cat"));
@@ -67,6 +67,13 @@ void ItemManager::loadData()
 
     ui->ItemTreeView->setModel(qm);
     ui->ItemSearchTreeView->setModel(sqm);
+
+    for(int i=0; i < qm->rowCount(); i++) {
+        int id = qm->data(qm->index(i,0)).toInt();
+        QString name = qm->data(qm->index(i,1)).toString();
+        int price = qm->data(qm->index(i,5)).toInt();
+        emit sendItemIdName(id,name,price);
+    }
     }
 }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ClientManager</class>
- <widget class="QWidget" name="ClientManager">
+ <class>ItemManager</class>
+ <widget class="QWidget" name="ItemManager">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -43,7 +43,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Client Section</string>
+        <string>Item Section</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -55,7 +55,7 @@
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <widget class="QTabWidget" name="ClientTabWidget">
+       <widget class="QTabWidget" name="ItemTabWidget">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -81,7 +81,7 @@
           <item>
            <layout class="QVBoxLayout" name="verticalLayout">
             <item>
-             <widget class="QLabel" name="ClientInfoLabel">
+             <widget class="QLabel" name="ItemInfoLabel">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -95,7 +95,7 @@
                </font>
               </property>
               <property name="text">
-               <string>Client Infomation Enrollment</string>
+               <string>Item Infomation Enrollment</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -121,7 +121,7 @@
             <item>
              <layout class="QFormLayout" name="formLayout">
               <item row="0" column="0">
-               <widget class="QLabel" name="ClientInfoIdLabel">
+               <widget class="QLabel" name="IdLabel">
                 <property name="font">
                  <font>
                   <family>Tw Cen MT Condensed Extra Bold</family>
@@ -134,7 +134,7 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="ClientInfoInputIdLineEdit">
+               <widget class="QLineEdit" name="InputIdLineEdit">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                   <horstretch>0</horstretch>
@@ -156,7 +156,7 @@
                </widget>
               </item>
               <item row="1" column="0">
-               <widget class="QLabel" name="ClientInfoNameLabel">
+               <widget class="QLabel" name="NameLabel">
                 <property name="font">
                  <font>
                   <family>Tw Cen MT Condensed Extra Bold</family>
@@ -167,12 +167,12 @@
                  <string>&amp;Name</string>
                 </property>
                 <property name="buddy">
-                 <cstring>ClientInfoInputNameLineEdit</cstring>
+                 <cstring>InputNameLineEdit</cstring>
                 </property>
                </widget>
               </item>
               <item row="1" column="1">
-               <widget class="QLineEdit" name="ClientInfoInputNameLineEdit">
+               <widget class="QLineEdit" name="InputNameLineEdit">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                   <horstretch>0</horstretch>
@@ -194,7 +194,7 @@
                </widget>
               </item>
               <item row="2" column="0">
-               <widget class="QLabel" name="ClientInfoAddressLabel">
+               <widget class="QLabel" name="CategoriLabel">
                 <property name="font">
                  <font>
                   <family>Tw Cen MT Condensed Extra Bold</family>
@@ -202,15 +202,15 @@
                  </font>
                 </property>
                 <property name="text">
-                 <string>&amp;Address</string>
+                 <string>&amp;Categori</string>
                 </property>
                 <property name="buddy">
-                 <cstring>ClientInfoInputAddressLineEdit</cstring>
+                 <cstring>InputCategoriLineEdit</cstring>
                 </property>
                </widget>
               </item>
               <item row="2" column="1">
-               <widget class="QLineEdit" name="ClientInfoInputAddressLineEdit">
+               <widget class="QLineEdit" name="InputCategoriLineEdit">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                   <horstretch>0</horstretch>
@@ -232,7 +232,7 @@
                </widget>
               </item>
               <item row="3" column="0">
-               <widget class="QLabel" name="ClientInfoPhoneNumLabel">
+               <widget class="QLabel" name="ColorLabel">
                 <property name="font">
                  <font>
                   <family>Tw Cen MT Condensed Extra Bold</family>
@@ -240,15 +240,15 @@
                  </font>
                 </property>
                 <property name="text">
-                 <string>&amp;Phone Number</string>
+                 <string>C&amp;olor</string>
                 </property>
                 <property name="buddy">
-                 <cstring>ClientInfoInputPhoneNumLineEdit</cstring>
+                 <cstring>InputColorLineEdit</cstring>
                 </property>
                </widget>
               </item>
               <item row="3" column="1">
-               <widget class="QLineEdit" name="ClientInfoInputPhoneNumLineEdit">
+               <widget class="QLineEdit" name="InputColorLineEdit">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                   <horstretch>0</horstretch>
@@ -270,7 +270,7 @@
                </widget>
               </item>
               <item row="4" column="0">
-               <widget class="QLabel" name="ClientInfoTypeLabel">
+               <widget class="QLabel" name="StockLabel">
                 <property name="font">
                  <font>
                   <family>Tw Cen MT Condensed Extra Bold</family>
@@ -278,15 +278,15 @@
                  </font>
                 </property>
                 <property name="text">
-                 <string>&amp;Type</string>
+                 <string>Stoc&amp;k</string>
                 </property>
                 <property name="buddy">
-                 <cstring>ClientInfoInputTypeLineEdit</cstring>
+                 <cstring>InputStockLineEdit</cstring>
                 </property>
                </widget>
               </item>
               <item row="4" column="1">
-               <widget class="QLineEdit" name="ClientInfoInputTypeLineEdit">
+               <widget class="QLineEdit" name="InputStockLineEdit">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                   <horstretch>0</horstretch>
@@ -307,12 +307,38 @@
                 </property>
                </widget>
               </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="priceLabel">
+                <property name="font">
+                 <font>
+                  <family>Tw Cen MT Condensed Extra Bold</family>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>&amp;Price</string>
+                </property>
+                <property name="buddy">
+                 <cstring>priceLineEdit</cstring>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="QLineEdit" name="priceLineEdit">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
              </layout>
             </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout">
               <item>
-               <widget class="QPushButton" name="ClientInfoAddPushButton">
+               <widget class="QPushButton" name="AddPushButton">
                 <property name="font">
                  <font>
                   <family>Bahnschrift Light</family>
@@ -324,7 +350,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="ClientInfoModifyPushButton">
+               <widget class="QPushButton" name="ModifyPushButton">
                 <property name="font">
                  <font>
                   <family>Bahnschrift Light</family>
@@ -336,7 +362,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="ClientInfoRemovePushButton">
+               <widget class="QPushButton" name="RemovePushButton">
                 <property name="font">
                  <font>
                   <family>Bahnschrift Light</family>
@@ -366,7 +392,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QListWidget" name="ClientInfoTimeListWidget">
+             <widget class="QListWidget" name="TimeListWidget">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -393,7 +419,7 @@
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_4">
             <item>
-             <widget class="QLabel" name="ClientSearchLabel">
+             <widget class="QLabel" name="SearchLabel">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -407,7 +433,7 @@
                </font>
               </property>
               <property name="text">
-               <string>Client Infomation Enrollment</string>
+               <string>Item Infomation Enrollment</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -433,7 +459,7 @@
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_2">
               <item>
-               <widget class="QComboBox" name="ClientSearchComboBox">
+               <widget class="QComboBox" name="SearchComboBox">
                 <item>
                  <property name="text">
                   <string>ID</string>
@@ -446,23 +472,18 @@
                 </item>
                 <item>
                  <property name="text">
-                  <string>Address</string>
+                  <string>Categori</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>P.Num</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Type</string>
+                  <string>Color</string>
                  </property>
                 </item>
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="ClientSearchInputLineEdit">
+               <widget class="QLineEdit" name="InputLineEdit">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                   <horstretch>0</horstretch>
@@ -486,7 +507,7 @@
              </layout>
             </item>
             <item>
-             <widget class="QPushButton" name="ClientSearchPushButton">
+             <widget class="QPushButton" name="SearchPushButton">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -505,7 +526,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QTreeView" name="ClientSearchTreeView"/>
+             <widget class="QTreeView" name="ItemSearchTreeView"/>
             </item>
             <item>
              <spacer name="verticalSpacer_4">
@@ -524,7 +545,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QListWidget" name="ClientSeartchTimeListWidget">
+             <widget class="QListWidget" name="SearchTimeListWidget">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -544,7 +565,13 @@
          </layout>
         </widget>
        </widget>
-       <widget class="QTreeView" name="treeView"/>
+       <widget class="QTreeView" name="ItemTreeView">
+        <property name="font">
+         <font>
+          <family>Bahnschrift Light</family>
+         </font>
+        </property>
+       </widget>
       </widget>
      </item>
     </layout>

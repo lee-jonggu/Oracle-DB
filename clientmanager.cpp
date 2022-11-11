@@ -63,6 +63,12 @@ void ClientManager::loadData()                                              // ë
 
         ui->treeView->setModel(qm);
         ui->ClientSearchTreeView->setModel(sqm);
+
+        for(int i=0; i < qm->rowCount(); i++) {
+            int id = qm->data(qm->index(i,0)).toInt();
+            QString name = qm->data(qm->index(i,1)).toString();
+            emit sendClientIdName(id,name);
+        }
     }
 }
 

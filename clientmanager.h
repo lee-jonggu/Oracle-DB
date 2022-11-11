@@ -7,7 +7,8 @@
 class Client;
 class QMenu;
 class QTreeWidgetItem;
-class QSqlQueryModel;
+class QSqlTableModel;
+class QSqlDatabase;
 
 namespace Ui {
 class ClientManager;
@@ -21,25 +22,19 @@ public:
     explicit ClientManager(QWidget *parent = nullptr);
     ~ClientManager();
     void loadData();
+    int makeId();
 
 public slots:
-    void showClient(QTreeWidgetItem*,int);                  // 저장된 클라이언트 보여주기
-
-    void clientNameListData(QString);                       // 이름으로 클라이언트 정보 추출
-    void clientAddressListData(QString);                    // 주소로 클라이언트 정보 추출
-    void clientTypeListData(QString);                       // 타입으로 클라이언트 정보 추출
+    void clientNameListData(int,QString);                       // 이름으로 클라이언트 정보 추출
     void clientIdListData(int);                             // 클라이언트 id로 서버에 정보 전송
-
-    void clientIdNameListData(int,QTreeWidgetItem*);        // 클라이언트 id, 이름으로 트리위젯아이템 형태로 저장
 
     void serverClientList();                                // 서버에 접속한 클라이언트 관리
 
-//    bool createConnection();
-
+    void getClientName(QString);
 signals:
     void clientAdded(int,QString);                          // 새로운 클라이언트가 추가될 때 시그널
     void clientRemove(int,int);                             // 클라이언트가 삭제될 때 시그널
-    void clientDataSent(Client*);                           // 클라이언트 정보 전송 시그널(클라이언트)
+    void sendClientIdData(int,QString,QString,QString,QString);                           // 클라이언트 정보 전송 시그널
     void clientDataSent(QString);                           // 클라이언트 정보 전송 시그널(이름)
     void clientDataSent(int);                               // 클라이언트 정보 전송 시그널(id)
     void clientNameDataSent(Client*,QTreeWidgetItem*);      // 클라이언트 이름으로 객체 전송 시그널
@@ -47,6 +42,10 @@ signals:
     void clientToServer(QTreeWidgetItem*);                  // 서버로 클라이언트 정보 전송 시그널
 
     void clickedServerTabSignal();                          // 탭이 바뀔 때 시그널 전송
+
+    void sendClientId(int);
+
+    void sendClientIdName(int,QString);
 
 private slots:
     void on_ClientInfoAddPushButton_clicked();              // add 버튼
@@ -64,7 +63,8 @@ private:
     QMultiMap<int, QString> logTimeList;                    // id로 로그 리스트 관리
     QMenu* menu;                                            // 메뉴
     QMap<int, QString> serverClient;                        // id로 서버에 전송하는 클라이언트 리스트
-    QSqlQueryModel *qm;
+    QSqlTableModel *qm;
+    QSqlTableModel *sqm;
 };
 
 #endif // CLIENTMANAGER_H

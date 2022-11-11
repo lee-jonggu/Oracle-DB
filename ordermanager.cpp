@@ -67,6 +67,9 @@ void OrderManager::loadData()
 
         ui->orderTreeView->setModel(qm);
         ui->searchTreeView->setModel(sqm);
+
+//        itemIdNameMap[i_id] = i_name;
+//        itemIdPriceMap[i_id] = ui->orderPricelineEdit->text().toInt();
     }
 }
 
@@ -213,10 +216,6 @@ void OrderManager::on_orderPushButton_clicked()
     query.bindValue(":amount",amount);
     query.exec();
     qm->select();
-
-    clientIdNameMap[c_id] = c_name;
-    itemIdNameMap[i_id] = i_name;
-    itemIdPriceMap[i_id] = ui->orderPricelineEdit->text().toInt();
 }
 
 void OrderManager::on_SearchPushButton_clicked()
@@ -259,23 +258,27 @@ void OrderManager::on_clearPushButton_clicked()
 
 void OrderManager::on_modifyPushButton_clicked()
 {
+    int o_id = qm->data(qm->index(ui->orderTreeView->currentIndex().row(),0)).toInt();
     int c_id = ui->orderClientIdlineEdit->text().toInt();
     int i_id = ui->orderItemIdlineEdit->text().toInt();
     int q = ui->orderQuantitylineEdit->text().toInt();
-    int price = itemIdPriceMap[i_id];
+    int price = itemIdPriceHash[i_id];
     int amount = q * price;
+    qDebug() << "price" << price;
 
-    QString c_name = clientIdNameMap[c_id];
-    QString i_name = itemIdNameMap[i_id];
-
+    QString c_name = clientIdNameHash[c_id];
+    QString i_name = itemIdNameHash[i_id];
+    qDebug() << "c_name" << c_name << "i_name" << i_name;
     QSqlDatabase db = QSqlDatabase::database("orderConnection");
     QSqlQuery query(db);
     query.prepare("update order_app set order_client_name = :c_name, order_item_name = :i_name,\
-                   order_count = :q, order_amount = :amount");
+                   order_count = :q, order_amount = :amount\
+                   where order_id = :o_id");
     query.bindValue(":c_name",c_name);
     query.bindValue(":i_name",i_name);
     query.bindValue(":q",q);
     query.bindValue(":amount",amount);
+    query.bindValue(":o_id",o_id);
     query.exec();
     qm->select();
 }
@@ -326,6 +329,18 @@ void OrderManager::getItemId(int id)
 void OrderManager::on_orderItemIdlineEdit_returnPressed()
 {
     QString arg1 = ui->orderItemIdlineEdit->text();
-    ui->orderPricelineEdit->setText(QString::number(itemIdPriceMap[arg1.toInt()]));
+    ui->orderPricelineEdit->setText(QString::number(itemIdPriceHash[arg1.toInt()]));
 }
 
+void OrderManager::getClientIdName(int id, QString name)
+{
+    clientIdNameHash[id] = name;
+    qDebug() << clientIdNameHash;
+}
+
+void OrderManager::getItemIdName(int id, QString name, int price)
+{
+    itemIdNameHash[id] = name;
+    itemIdPriceHash[id] = price;
+    qDebug() << itemIdNameHash;
+}
