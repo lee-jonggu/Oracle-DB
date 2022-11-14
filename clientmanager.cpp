@@ -68,6 +68,7 @@ void ClientManager::loadData()                                              // �
             int id = qm->data(qm->index(i,0)).toInt();
             QString name = qm->data(qm->index(i,1)).toString();
             emit sendClientIdName(id,name);
+            emit clientAdded(id,name);
         }
     }
 }
@@ -122,6 +123,8 @@ void ClientManager::on_ClientInfoAddPushButton_clicked()                    // a
     query.bindValue(":type", type);
     query.exec();
     qm->select();
+
+    emit clientAdded(id,name);
 }
 
 void ClientManager::on_ClientInfoModifyPushButton_clicked()                 // modify 버튼 클릭

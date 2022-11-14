@@ -180,8 +180,9 @@ void ChatServer::receiveData()                                              // �
                 sendArray.clear();                                  // 바이트어레이 초기화
                 QDataStream out(&sendArray, QIODevice::WriteOnly);  // 바이트어레이를 데이터스트림에 쓰기 전용으로 담아서 열기
                 out << Chat_Talk;                                   // 프로토콜 타입 담기
+                sendArray.append("<font color=lightsteelblue>");
                 sendArray.append(clientNameHash[port].toStdString().data());    // 보낼 데이터에 보내는 클라이언트 이름 담기
-                sendArray.append(" : ");                            // 구분자
+                sendArray.append("</font> : ");                            // 구분자
                 sendArray.append(id.toStdString().data());          // 보낼 데이터 담기
                 sock->write(sendArray);                             // 소켓을 통해 다른 클라이언트에게 전송
             }
