@@ -544,7 +544,11 @@
          </layout>
         </widget>
        </widget>
-       <widget class="QTreeView" name="treeView"/>
+       <widget class="QTreeView" name="treeView">
+        <property name="alternatingRowColors">
+         <bool>true</bool>
+        </property>
+       </widget>
       </widget>
      </item>
     </layout>
