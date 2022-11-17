@@ -48,7 +48,7 @@ void ItemManager::loadData()
 
     qm = new QSqlTableModel(this,db);
     qm->setTable("item");
-    qm->select(); // select * from item;
+    qm->select();                                                                        // select * from item;
     qm->setHeaderData(0, Qt::Horizontal, QObject::tr("Item_ID"));
     qm->setHeaderData(1, Qt::Horizontal, QObject::tr("Item_Name"));
     qm->setHeaderData(2, Qt::Horizontal, QObject::tr("Item_Cat"));
